@@ -63,7 +63,16 @@ public class ListaSimples implements ListaOperacoes {
     public boolean inserir(int indice, String elemento) {
         if(!estaVazio())
         {
-            
+            if(this.lista[this.lista.length-1] == null)
+            {
+                for (int i = this.lista.length-1; i >indice; i--) {
+                    this.lista[i] = this.lista[i-1];
+                 }
+                this.lista[indice] = elemento;
+                System.out.println("Sucesso, elemento inserido");
+
+            }
+            System.out.println("Falha ao inserir");
         }
         return false;
     }
@@ -74,17 +83,6 @@ public class ListaSimples implements ListaOperacoes {
         {
             String remocao = this.lista[indice];
             removerElemento(remocao);
-            for (int i = indice; i <=this.lista.length ; i++) {
-                String proxElemento = this.lista[i+1];
-                if(proxElemento != null)
-                {
-                    this.lista[i] = proxElemento;
-                } else if (i == this.lista.length) {
-                    this.lista[i] = null;
-                }
-
-
-            }
         }
         return "";
     }

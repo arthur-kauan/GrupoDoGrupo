@@ -21,8 +21,10 @@ public class Main {
         listaSimples.exibirElementos();
         listaSimples.obter(2);
         System.out.println(listaSimples.obter(3));
-
-        listaSimples.removerPorIndice(3);
+        listaSimples.removerTodas("Feijão");
+        listaSimples.inserir(2,"Pão");
+        listaSimples.exibirElementos();
+//        listaSimples.removerPorIndice(3);
 
     }
 }
