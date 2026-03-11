@@ -81,30 +81,61 @@ public class ListaSimples implements ListaOperacoes {
     public String removerPorIndice(int indice) {
         if(!estaVazio())
         {
-            String remocao = this.lista[indice];
-            removerElemento(remocao);
+            if(this.lista[indice] != null) {
+                this.lista[indice] = null;
+                for (int i = indice; i < this.lista.length-1; i++) {
+
+                    this.lista[i] = this.lista[i + 1];
+                }
+                this.lista[this.lista.length-1] = null;
+                return "Elemento do indice: " + indice + " removido!";
+            }
+            return "Indice já está vazio";
         }
-        return "";
+        return "Lista vazia";
     }
 
     @Override
     public void limpar() {
-
+        for (int i = 0; i < this.lista.length; i++) {
+            this.lista[i] = null;
+        }
     }
 
     @Override
     public int ultimoIndiceDe(String elemento) {
-        return 0;
+        int posicaoFinal = 0;
+        for (int i = 0; i <this.lista.length; i++) {
+            if(this.lista[i].equals(elemento)){
+                posicaoFinal = i;
+            }
+
+        }
+        return posicaoFinal;
     }
 
     @Override
     public int contarOcorrencias(String elemento) {
-        return 0;
+        int cont = 0;
+        for (int i = 0; i <this.lista.length; i++) {
+            if(this.lista[i].equals(elemento)){
+                cont++;
+            }
+
+        }
+        return cont;
     }
 
     @Override
     public int substituir(String antigo, String novo) {
-        return 0;
+        int cont = 0;
+        for (int i = 0; i < this.lista.length; i++) {
+            if (this.lista[i].equals(antigo)) {
+                this.lista[i] = novo;
+                cont++;
+            }
+        }
+        return cont;
     }
 
     public void exibirElementos() {

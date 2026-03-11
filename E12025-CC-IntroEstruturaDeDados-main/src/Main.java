@@ -18,13 +18,14 @@ public class Main {
         ophn[1] = "b";
         ophn[2] = "c";
         listaSimples.adicionarVarios(ophn);
+//        listaSimples.exibirElementos();
+//        listaSimples.obter(2);
+//        System.out.println(listaSimples.obter(3));
+//        listaSimples.removerTodas("Feijão");
+//        listaSimples.inserir(2,"Pão");
         listaSimples.exibirElementos();
-        listaSimples.obter(2);
-        System.out.println(listaSimples.obter(3));
-        listaSimples.removerTodas("Feijão");
-        listaSimples.inserir(2,"Pão");
+        System.out.println(listaSimples.substituir("Feijão","papa"));
         listaSimples.exibirElementos();
-//        listaSimples.removerPorIndice(3);
 
     }
 }
