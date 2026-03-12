@@ -192,5 +192,6 @@ public class ListaDinamica implements ListaOperacoes {
             aux = aux.getProx();
         }while (aux != null && aux.getConteudo() != null);
         return i;
+
     }
 }
