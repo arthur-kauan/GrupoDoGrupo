@@ -12,5 +12,10 @@ public class MainListaDinamica {
         listaDinamica.removerElemento("Feijão");
         System.out.println(listaDinamica.removerTodas("Arroz"));
         listaDinamica.exibirElementos();
+
+        System.out.println("\n" + listaDinamica.contar());
+
+        listaDinamica.limpar();
+
     }
 }

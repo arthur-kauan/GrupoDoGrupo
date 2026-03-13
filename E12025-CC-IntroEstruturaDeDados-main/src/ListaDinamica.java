@@ -87,13 +87,10 @@ public class ListaDinamica implements ListaOperacoes {
     int i = 0;
     if (!existeInicio()) return 0;
 
-    // 1. Trata remoções no início da lista (o "novo" início pode ser o elemento também)
     while (this.inicio != null && this.inicio.getConteudo().equals(elemento)) {
         this.inicio = this.inicio.getProx();
         i++;
     }
-
-    // 2. Trata remoções no restante da lista
     if (this.inicio != null) {
         No ant = this.inicio;
         No aux = this.inicio.getProx();
@@ -113,13 +110,37 @@ public class ListaDinamica implements ListaOperacoes {
     }
 
     @Override
-    public int contar() {
-        return 0;
+    public int contar(){
+        int contagem = 0;
+        No atual = inicio;
+
+        while (atual != null) {
+            contagem++;
+            atual = atual.prox;
+        }
+        return contagem;
     }
 
     @Override
     public int adicionarVarios(String[] elementos) {
-        return 0;
+        int adicionados = 0;
+
+        for (int i = 0; i < elementos.length; i++) {
+            No novo = new No(elementos[i]);
+
+            if (inicio == null) {
+                inicio = novo;
+            } else {
+                No atual = inicio;
+                while (atual.prox != null) {
+                    atual = atual.prox;
+                }
+                atual.prox = novo;
+            }
+            adicionados++;
+        }
+
+        return adicionados;
     }
 
     @Override
@@ -141,8 +162,13 @@ public class ListaDinamica implements ListaOperacoes {
 
     @Override
     public void limpar() {
-
-
+        No atual = inicio;
+        while (atual != null) {
+            No proximo = atual.prox;
+            atual.prox = null;
+            atual = proximo;
+        }
+        inicio = null;
     }
 
     @Override
