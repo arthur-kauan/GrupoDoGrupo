@@ -145,19 +145,79 @@ public class ListaDinamica implements ListaOperacoes {
 
     @Override
     public String obter(int indice) {
-        return "";
-    }
+        if (indice < 0 || inicio == null) {
+            return null;
+        }
+        No atual = inicio;
+        int contador = 0;
 
+        while (atual != null) {
+            if (contador == indice) {
+                return atual.getConteudo();
+            }
+
+            atual = atual.getProx(); // Move para o próximo nó
+            contador++;
+        }
+        return null;
+    }
     @Override
     public boolean inserir(int indice, String elemento) {
-        return false;
+        if (indice < 0) return false;
+
+        No novo = new No(elemento);
+        if (indice == 0) {
+            novo.setProx(inicio);
+            inicio = novo;
+            return true;
+        }
+        No anterior = inicio;
+        int contador = 0;
+
+        while (anterior != null && contador < indice - 1) {
+            anterior = anterior.getProx();
+            contador++;
+        }
+
+        if (anterior == null) {
+            return false;
+        }
+
+        novo.setProx(anterior.getProx());
+        anterior.setProx(novo);
+
+        return true;
     }
 
     @Override
     public String removerPorIndice(int indice) {
+        if (inicio == null || indice < 0) {
+            return null;
+        }
 
+        if (indice == 0) {
+            String conteudoRemovido = inicio.getConteudo();
+            inicio = inicio.getProx();
+            return conteudoRemovido;
+        }
 
-        return "";
+        No anterior = inicio;
+        int contador = 0;
+
+        while (anterior != null && contador < indice - 1) {
+            anterior = anterior.getProx();
+            contador++;
+        }
+
+        if (anterior == null || anterior.getProx() == null) {
+            return null;
+        }
+
+        No alvo = anterior.getProx();
+        String conteudoRemovido = alvo.getConteudo();
+        anterior.setProx(alvo.getProx());
+
+        return conteudoRemovido;
     }
 
     @Override
